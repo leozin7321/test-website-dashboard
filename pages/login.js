@@ -40,7 +40,7 @@ event.preventDefault();
 const data = new FormData(event.currentTarget);
   const userid = data.get('id')
   const password = data.get('password')
-const resultado = await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/login',{
+const resultado = await axios.post('/api/login',{
   userID: userid,
   password: password
 }).then(async(res) => {
