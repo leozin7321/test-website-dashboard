@@ -181,7 +181,7 @@ StatusComingSoon.getLayout = function getLayout(page) {
 
 
 export async function getServerSideProps({ req, res }) {
-  if(req.headers.referer == '/status/soon' || req.headers.referer == undefined){
+  if(req.headers.referer == process.env.NEXT_PUBLIC_VERCEL_URL+'/status/soon' || req.headers.referer == undefined){
     res.writeHead(303, { Location: '/' });
     res.end();
     return {

@@ -84,7 +84,7 @@ if(!oldPassword  || !newPassword ) return toast.warn('Insira as informações no
 if(user.Password !== oldPassword) return toast.error("Senha atual invalida!", {theme: "colored"}); 
 if(user.Password == newPassword) return toast.error("Você nao pode definir a mesma senha!", {theme: "colored"}); 
 
- const setPasswordApi = await axios.post('/api/setsenha', {
+ const setPasswordApi = await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/setsenha', {
     novaSenha: newPassword,
     id: id,
  })
@@ -178,7 +178,7 @@ export async function getServerSideProps({ req, res }) {
       props: {user: null}, 
     }
   } else {
-    const userApi = await fetch('/api/infouser/'+decoced.id)
+    const userApi = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/infouser/'+decoced.id)
     .then(r => r.json())
     .catch(console.error)
    

@@ -71,10 +71,10 @@ export async function getServerSideProps({ req, res }) {
     props: {user: null, id}, 
   }
 } else {
-  const userApi = await fetch('/infobot/'+decoded)
+  const userApi = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL+'/infobot/'+decoded)
   .then(r => r.json())
   
-  const infosApi = await fetch('/api/infogeral/'+decoded)
+  const infosApi = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/infogeral/'+decoded)
   .then(r => r.json())
   .catch(console.error)
   return {
