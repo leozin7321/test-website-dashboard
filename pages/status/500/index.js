@@ -95,7 +95,7 @@ Status404.getLayout = function getLayout(page) {
 
 
 export async function getServerSideProps({ req, res }) {
-  if(req.headers.referer == process.env.NEXT_PUBLIC_API_URL+'/status/500' || req.headers.referer == undefined ){
+  if(req.headers.referer == process.env.NEXT_PUBLIC_VERCEL_URL+'/status/500' || req.headers.referer == undefined ){
     res.writeHead(303, { Location: '/' });
     res.end();
     return {

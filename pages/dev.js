@@ -84,7 +84,7 @@ export async function getServerSideProps({ req, res }) {
     props: {user: null }, 
   }
 } else {
-  const userApi = await fetch(process.env.NEXT_PUBLIC_API_URL+'/api/infouser/'+decoded.id)
+  const userApi = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/infouser/'+decoded.id)
   .then(r => r.json())
   .catch(console.error)
   const perms = userApi.Perms
@@ -95,7 +95,7 @@ export async function getServerSideProps({ req, res }) {
         props: { }
     }
  }
- const infosProduct = await fetch(process.env.NEXT_PUBLIC_API_URL+'/api/dev/painel')
+ const infosProduct = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/dev/painel')
  .then(r => r.json())
  .catch(console.error)
   return {

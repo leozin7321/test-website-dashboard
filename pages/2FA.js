@@ -75,7 +75,7 @@ const [button, setButton] = useState(false)
       document.getElementById('submit').textContent = 'Processando…';
       setButton(true)
       event.preventDefault()
-      const DoisFatores = await axios.get(process.env.NEXT_PUBLIC_API_URL+'/api/2fa/check/'+user.userID)
+      const DoisFatores = await axios.get(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/2fa/check/'+user.userID)
 
   
       
@@ -100,7 +100,7 @@ const [button, setButton] = useState(false)
            Cookies.set('user', token, {expires: 3 })
           
           
-           const clearResult = await axios.get(process.env.NEXT_PUBLIC_API_URL+'/api/2fa/finaly/'+user.userID)
+           const clearResult = await axios.get(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/2fa/finaly/'+user.userID)
         router.push('/')
      
 
@@ -109,7 +109,7 @@ const [button, setButton] = useState(false)
    
         toast.error("Autorização negada, você será levado a pagina de login!", {theme: "colored"}); 
         Cookies.remove('TwoFA')
-        const clearResult = await axios.get(process.env.NEXT_PUBLIC_API_URL+'/api/2fa/finaly/'+user.userID)
+        const clearResult = await axios.get(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/2fa/finaly/'+user.userID)
         setTimeout(() => {
           router.push('/login')
         }, 4000);
@@ -192,12 +192,12 @@ const decoded = jwt.decode(id)
       props: {user: null}, 
     }
   } else {
-    if(req.headers?.referer !== process.env.NEXT_PUBLIC_API_URL+'/login'){
+    if(req.headers?.referer !== process.env.NEXT_PUBLIC_VERCEL_URL+'/login'){
       res.writeHead(303, { Location: '/login' });
      return res.end();
      
     }   
-     const userApi = await fetch(process.env.NEXT_PUBLIC_API_URL+'/api/infouser/'+decoded.id)
+     const userApi = await fetch(process.env.NEXT_PUBLIC_VERCEL_URL+'/api/infouser/'+decoded.id)
       .then(r => r.json())
       .catch(console.error)
     return {
