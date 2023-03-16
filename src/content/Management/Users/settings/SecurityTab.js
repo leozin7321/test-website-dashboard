@@ -67,7 +67,7 @@ function SecurityTab({ user } ) {
     id: user.userID,
     result: verifyTwofa
   }
-fetch(process.env.NEXT_PUBLIC_VERCEL_URL+"/api/twofa", {
+fetch("/api/twofa", {
      method: "POST",
      headers: {
       'Content-Type': 'application/json',
